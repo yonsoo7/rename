@@ -2,35 +2,25 @@ month=$1
 date=$2
 year=$3
 
-if [ $# -ne 3 ]; then 
+if [ $# -ne 3 ]; then
   echo "오류"
   exit 1
 fi
 
-case "$month" in
-
-  jan | january | 1)
-  month="Jan" ;;
-  feb | february | 2)
-  month="Feb" ;;
-  mar | march | 3)
-  month="Mar" ;;
-  apr | april | 4)
-  month="Apr" ;;
-  may | 5)
-  month="May" ;;
-  jun | june | 6)
-  month="Jun" ;;
-  jul | july | 7)
-  month="Jul" ;;
-  aug | august | 8)
-  month="Aug" ;;
-  sep | september | 9)
-  month="Sep" ;;
-  oct | october | 10)
-  month="Oct" ;;
-  nov | november | 11)
-  month="Nov" ;;
-  dec | december | 12)
-  month="Dec" ;;
-esac
+convert_month() {
+    case "$1" in
+        "Jan"|"1"|"January") echo "Jan";;
+        "Feb"|"2"|"February") echo "Feb";;
+        "Mar"|"3"|"March") echo "Mar";;
+        "Apr"|"4"|"April") echo "Apr";;
+        "May"|"5") echo "May";;
+        "Jun"|"6"|"June") echo "Jun";;
+        "Jul"|"7"|"July") echo "Jul";;
+        "Aug"|"8"|"August") echo "Aug";;
+        "Sep"|"9"|"September") echo "Sep";;
+        "Oct"|"10"|"October") echo "Oct";;
+        "Nov"|"11"|"November") echo "Nov";;
+        "Dec"|"12"|"December") echo "Dec";;
+        *) echo "Invalid";;
+    esac
+}

@@ -1,0 +1,11 @@
+month=$1 date=$2 year=$3
+
+<<<<<<< HEAD if [ ! $# = 3 ]; then ======= if [ $# -ne 3 
+]; the
+
+
+>>>>>>> cf5369a8979d68b6c318c7c4c6a741eca927ca25
+  echo "오류"
+  exit 1
+fi
+

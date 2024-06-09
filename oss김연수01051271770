@@ -1,0 +1,62 @@
+import sys
+
+def check_phone_number(phone):
+    """Check if the phone number is valid (contains only digits and hyphens)."""
+    if all(c.isdigit() or c == '-' for c in phone):
+        return True
+    return False
+
+def get_region(area_code):
+    """Return the region based on the area code."""
+    area_code_mapping = {
+        '01': '서울',
+        '012': '경기',
+        '013': '제주',
+        '014': '부산',
+        '015': '전주'
+    }
+    return area_code_mapping.get(area_code, 'Unknown')
+
+def add_or_update_contact(name, phone, contacts):
+    """Add or update a contact in the contacts list."""
+    for i, contact in enumerate(contacts):
+        contact_name, contact_phone, contact_region = contact.split()
+        if contact_name == name:
+            if contact_phone == phone:
+                print("동일한 번호가 이미 존재합니다.")
+                sys.exit(0)
+            else:
+                contacts[i] = f"{name} {phone} {get_region(phone.split('-')[0])}"
+                break
+    else:
+        contacts.append(f"{name} {phone} {get_region(phone.split('-')[0])}")
+
+    contacts.sort()
+    return contacts
+
+def main():
+    # Simulating the input, for example, using command-line arguments.
+    if len(sys.argv) != 3:
+        print("잘못된 입력값입니다. 이름과 전화번호를 입력하십시오.")
+        sys.exit(1)
+
+    name = sys.argv[1]
+    phone = sys.argv[2]
+
+    if not check_phone_number(phone):
+        print("잘못된 전화번호 형식입니다. 숫자와 하이픈만 사용하십시오.")
+        sys.exit(1)
+
+    contacts = [
+        "김연수 01-1234-5678 서울",
+        "김한별 012-234-5678 경기",
+        "김희수 015-345-6789 전주"
+    ]
+
+    contacts = add_or_update_contact(name, phone, contacts)
+
+    for contact in contacts:
+        print(contact)
+
+if __name__ == "__main__":
+    main()
